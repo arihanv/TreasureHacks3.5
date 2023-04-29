@@ -2,6 +2,7 @@
 # import jetson.inference
 # import jetson.utils
 import numpy as np 
+import jetson
 
 
 import cv2
