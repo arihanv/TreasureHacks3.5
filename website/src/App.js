@@ -5,6 +5,9 @@ import singleglasses from "./images/singleglasses.png";
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import Card from "react-bootstrap/Card";
+import objDect from "./images/objDect.png";
+import speechRec from "./images/speechRec.png";
+import imgCap from "./images/imageCap.png";
 
 function App() {
   const onDrop = useCallback((acceptedFiles) => {
@@ -46,7 +49,7 @@ function App() {
               </div>
               <div className="rounded-2xl img-cont cardsCont">
                 <Card className="card" style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src={glasses} />
+                  <Card.Img variant="top" src={imgCap} />
                   <Card.Body>
                     <div className="text-black text-xl font-bold" >Image Captioning</div>
                     <div className="text-black text-base">
@@ -56,7 +59,7 @@ function App() {
                   </Card.Body>
                 </Card>
                 <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src={glasses} />
+                  <Card.Img variant="top" src={speechRec} />
                   <Card.Body>
                     <div className="text-black text-xl font-bold">Speech Recognition</div>
                     <div className="text-black text-base">
@@ -66,7 +69,7 @@ function App() {
                   </Card.Body>
                 </Card>
                 <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src={glasses} />
+                  <Card.Img variant="top" src={objDect} />
                   <Card.Body>
                     <div className="text-black text-xl font-bold">Object Detection</div>
                     <div className="text-black text-base">
