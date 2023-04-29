@@ -20,6 +20,14 @@
   grid-template-columns: 1fr 1.5fr;
 }
 
+.main-back{
+  padding: 1.5rem;
+  border-radius: 20px;
+  background: url("./images/gradient.jpg") center bottom no-repeat;
+  background-size: cover;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+}
+
 .child-hero{
   display: grid;
   gap: 40px;
@@ -31,6 +39,19 @@
 
 .card-right{
   grid-template-columns: 1.5fr 1fr;
+}
+
+.fileDrop{
+  max-width: 300px;
+  font-size: 2vh;
+  background-color: black;
+  padding: 1rem;
+  align-items: center;
+}
+
+@font-face {
+  font-family: 'OpenSans';
+  src: url("./fonts/MADE Outer Sans Bold PERSONAL USE.otf");
 }
 
 
