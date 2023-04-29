@@ -20,6 +20,14 @@
   grid-template-columns: 1fr 1.5fr;
 }
 
+.main-back{
+  padding: 1.5rem;
+  border-radius: 20px;
+  background: url("./images/gradient.jpg") center bottom no-repeat;
+  background-size: cover;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+}
+
 .child-hero{
   display: grid;
   gap: 40px;
