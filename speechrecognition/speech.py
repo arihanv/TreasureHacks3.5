@@ -27,11 +27,37 @@ twilio_client = Client(twilio_account_sid, twilio_auth_token)
 
 
 openai.api_key = "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"
-
+run = False
 
 def talk(text):
     engine.say(text)
     engine.runAndWait()
+
+
+def extract_command(phrase):
+    # Convert phrase to lowercase
+    phrase = phrase.lower()
+    
+    # Check if "sight" or "sense" is in the phrase
+    if "sight" in phrase:
+        # Remove everything before "sight"
+        phrase = phrase.split("sight", 1)[1].strip()
+    elif "sense" in phrase:
+        # Remove everything before "sense"
+        phrase = phrase.split("sense", 1)[1].strip()
+    elif "site" in phrase:
+        phrase = phrase.split("site", 1)[1].strip()
+    elif "sight sense" in phrase:
+        phrase = phrase.split("sight sense", 1)[1].strip()
+
+
+    else:
+        take_command()
+    
+    # Return the extracted command
+    return phrase
+
+
 
 def take_command():
     command = ''  # set default value here
@@ -42,13 +68,38 @@ def take_command():
             voice = listener.listen(source)
             command = listener.recognize_google(voice)
             command = command.lower()
-            if 'tejas' in command:
-                command = command.replace('tejas', '')
-                print(command)
+            print(command) # Add this line to see what the command is
+            print('sight' in command or 'sense' in command or 'site' in command or 'sight sense' in command)
+        if 'sight' in command or 'sense' in command or 'site' in command or 'sight sense' in command:
+            run = True
+            # Extract the command using the function we just made
+            extracted_command = extract_command(command)
+            if extracted_command:
+                print(extracted_command)
+                return extracted_command
+            else:
+                return None
+
+
     except:
         pass
-    return command
 
+    take_command()
+
+def take_commandBypass():
+    command = ''  # set default value here
+    try:
+        with sr.Microphone() as source:
+            print('listening...')
+            #talk('Ask Me Anything!') ##MAY GET ANNOYING SO COMMENTED
+            voice = listener.listen(source)
+            command = listener.recognize_google(voice)
+            command = command.lower()
+            print(command) # Add this line to see what the command is
+            return command
+
+    except:
+        pass
 
 def text_to_speech(text):
     headers = {'Content-Type': 'application/json', 'Authorization': f'Bearer {ELEVENLABS_API_KEY}'}
@@ -88,7 +139,10 @@ def format_phone_number(phone_number):
 
 def run_tejas():
     command = take_command()
-    print(command)
+    #print(command)
+    if command == False:
+        exit()
+
     if 'play' in command:
         song = command.replace('play', '')
         talk('playing ' + song)
@@ -112,27 +166,27 @@ def run_tejas():
         print(info)
         talk(info)
     elif 'creator' in command:
-        talk('Tejas created this for Treasurehacks 2023')
+        talk('We created this for Treasurehacks 2023')
     elif 'are you single' in command:
         talk('I am in a relationship with wifi')
     elif 'joke' in command:
         talk(pyjokes.get_joke())
-    elif 'stop' in command:
+    elif any(word in command for word in ['shut', 'quit', 'mute', 'stop', 'done', 'end', 'terminate']):
         talk('Goodbye!')
-        quit()
-    elif any(word in command for word in ['name', 'quit', 'mute', 'stop', 'done', 'end', 'terminate']):
+        take_command()
+    elif 'name' in command:
         talk("My name is Sight Sense.")
-    elif 'text' in command:
+    elif 'text' in command or 'message' in command:
         # Prompt the user for the phone number and message content using voice input
         talk("Enter the phone number you want to send a text message to.")
-        to_number = take_command()
+        to_number = take_commandBypass()
         to_number = "+1" + to_number #ADD THE COUNTRY CODE
 
         # Format the phone number to match Twilio's requirements
         #to_number = format_phone_number(to_number)
 
         talk("Enter the message you want to send.")
-        letter = take_command()
+        letter = take_commandBypass()
 
         # Set up the Twilio client with your account SID and auth token
         client = Client(twilio_account_sid, twilio_auth_token)
@@ -146,6 +200,21 @@ def run_tejas():
 
         # Print out the message SID as confirmation that the text message was sent
         print(f"Message sent with SID: {message.sid}")
+    elif 'call' in command:
+        # Prompt the user for the phone number to call
+        talk("Enter the phone number you want to call.")
+        to_number = take_commandBypass()
+        to_number = "+1" + to_number #ADD THE COUNTRY CODE
+
+        # Use the Twilio client to initiate a call with Twilio's API
+        call = client.calls.create(
+            url='http://demo.twilio.com/docs/voice.xml',
+            to=to_number,
+            from_=twilio_phone_number
+        )
+
+        # Print out the call SID as confirmation that the call was initiated
+        print(f"Call initiated with SID: {call.sid}")
            
     else:
         try:
@@ -163,7 +232,7 @@ def run_tejas():
         except Exception as e:
             print(e)
             talk('Please say the command again.')
-            run_tejas()
+            take_commandBypass()
 
 
 while True:
@@ -171,12 +240,15 @@ while True:
 
 
 
+### OLD PLAY SONG ###
+
 #    if 'play' in command:
 #       song = command.replace('play', '')
 #        talk('playing ' + song)
 #       pywhatkit.playonyt(song)
 
 
+### OLD TEXT ###
 
 # elif 'text' in command:
 #         try:
@@ -205,3 +277,29 @@ while True:
 #                     talk(f"Sorry, I could not find {contact_name} in your contacts.")
 #         except:
 #             talk('Sorry, I could not send the text message.')     
+
+##OLD TTS WITH ELEVANLABS VOICE###
+
+# def text_to_speech(text, voice='eleven-US-KevinV3'):
+#     headers = {'Content-Type': 'application/json', 'Authorization': f'Bearer {ELEVENLABS_API_KEY}'}
+#     data = {'text': text, 'lang': 'en', 'voice': voice}
+#     response = requests.post(f'{ELEVENLABS_URL}/v1/generate', headers=headers, data=json.dumps(data))
+#     if response.ok:
+#         audio_url = response.json()['data']['audio']
+#         os.system(f'start cmd /c vlc --play-and-exit "{audio_url}"')
+#     else:
+#         print(response.text)
+
+###OLD TALK FUNCTION WITH ELEVANLABS VOICE###
+
+# def talk(text, voice='eleven-US-Rachel'):
+#     headers = {'Content-Type': 'application/json', 'Authorization': f'Bearer {ELEVENLABS_API_KEY}'}
+#     data = {'text': text, 'lang': 'en', 'voice': voice}
+#     response = requests.post(f'{ELEVENLABS_URL}/v1/generate', headers=headers, data=json.dumps(data))
+#     if response.ok:
+#         audio_url = response.json()['data']['audio']
+#         os.system(f'start cmd /c vlc --play-and-exit "{audio_url}"')
+#     else:
+#         print(response.text)
+
+# talk("test", voice='eleven-US-Rachel')
