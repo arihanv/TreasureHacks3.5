@@ -1,6 +1,3 @@
-#Twillio API is REQUIRED for text/call
-#GPT API is REQUIRED for generative AI (for when the bot doesn't know the answer)
-
 import speech_recognition as sr
 import pyttsx3
 import os
@@ -24,7 +21,8 @@ twilio_auth_token = '46563c89b6315d38f74857fd9d8e6d72'
 twilio_phone_number = '+18557432591'
 twilio_client = Client(twilio_account_sid, twilio_auth_token)
 
-
+ELEVENLABS_API_KEY="1ba0b0a874fbf33d678f720868670557"
+ELEVANLABS_URL='https://api.elevenlabs.io/v1/text-to-speech/21m00Tcm4TlvDq8ikWAM/stream'
 
 openai.api_key = "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"
 run = False
@@ -69,7 +67,7 @@ def take_command():
             command = listener.recognize_google(voice)
             command = command.lower()
             print(command) # Add this line to see what the command is
-            print('sight' in command or 'sense' in command or 'site' in command or 'sight sense' in command)
+            print('sight' in command or 'sense' in command or 'site' in command or 'sight sense' in command) ##DETECTS IF THE COMMAND CONTAINS A TRIGGER WORD
         if 'sight' in command or 'sense' in command or 'site' in command or 'sight sense' in command:
             run = True
             # Extract the command using the function we just made
@@ -78,13 +76,17 @@ def take_command():
                 print(extracted_command)
                 return extracted_command
             else:
-                return None
-
+                talk("Please Say That Again")
+                take_commandBypass()
 
     except:
-        pass
+        command = ''
 
-    take_command()
+    if not command:
+        return ''
+
+    return take_command()
+
 
 def take_commandBypass():
     command = ''  # set default value here
@@ -99,12 +101,12 @@ def take_commandBypass():
             return command
 
     except:
-        pass
+        command=''
 
 def text_to_speech(text):
     headers = {'Content-Type': 'application/json', 'Authorization': f'Bearer {ELEVENLABS_API_KEY}'}
     data = {'text': text, 'lang': 'en'}
-    response = requests.post(f'{ELEVENLABS_URL}/v1/generate', headers=headers, data=json.dumps(data))
+    response = requests.post(f'{ELEVANLABS_URL}/v1/generate', headers=headers, data=json.dumps(data))
     if response.ok:
         audio_url = response.json()['data']['audio']
         os.system(f'start cmd /c vlc --play-and-exit "{audio_url}"')
@@ -171,7 +173,7 @@ def run_tejas():
         talk('I am in a relationship with wifi')
     elif 'joke' in command:
         talk(pyjokes.get_joke())
-    elif any(word in command for word in ['shut', 'quit', 'mute', 'stop', 'done', 'end', 'terminate']):
+    elif any(word in command for word in ['shut', ' quit', ' mute', ' stop', ' done', ' end',' terminate']): #spaces needed so a word like "friend" wont trigger
         talk('Goodbye!')
         take_command()
     elif 'name' in command:
@@ -206,6 +208,9 @@ def run_tejas():
         to_number = take_commandBypass()
         to_number = "+1" + to_number #ADD THE COUNTRY CODE
 
+        client = Client(twilio_account_sid, twilio_auth_token)
+
+
         # Use the Twilio client to initiate a call with Twilio's API
         call = client.calls.create(
             url='http://demo.twilio.com/docs/voice.xml',
@@ -229,6 +234,8 @@ def run_tejas():
             )
             answer = response.choices[0].text.strip()
             talk(answer)
+            if '?' in answer: #IF THE BOT IS ASKING THE USER A QUESTION
+                take_commandBypass() #ALLOWS FOR FLUENT CONVERSATION
         except Exception as e:
             print(e)
             talk('Please say the command again.')
