@@ -19,14 +19,14 @@ engine = pyttsx3.init()
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[1].id)
 
-twilio_account_sid = 'UR ACCOUNT SID'
-twilio_auth_token = 'UR AUTH TOKEN'
-twilio_phone_number = 'UR TWILIO PHONE NUMBER' #include +1 area code
+twilio_account_sid = 'AC4cfec86d87d0f34359e07784172a6147'
+twilio_auth_token = '46563c89b6315d38f74857fd9d8e6d72'
+twilio_phone_number = '+18557432591'
 twilio_client = Client(twilio_account_sid, twilio_auth_token)
 
 
 
-openai.api_key = "UR OPENAI API KEY"
+openai.api_key = "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"
 
 
 def talk(text):
