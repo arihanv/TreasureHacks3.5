@@ -13,11 +13,12 @@ root.render(
   <React.StrictMode>
      <Navbar sticky="top" bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">SightSense</Navbar.Brand>
+          <Navbar.Brand href="#cardMain">SightSense</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#card1">Why</Nav.Link>
-            <Nav.Link href="#card2">What</Nav.Link>
-            <Nav.Link href="#card3">Try</Nav.Link>
+            <Nav.Link href="#card1">Features</Nav.Link>
+            <Nav.Link href="#card2">Why</Nav.Link>
+            <Nav.Link href="#card3">How</Nav.Link>
+            <Nav.Link href="#card4">Demo</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
