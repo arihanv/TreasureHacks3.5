@@ -1,18 +1,27 @@
-import logo from "./logo.svg";
 import "./App.css";
 import glasses from "./images/glasses.png";
-// import gradient from "./images/gradient.jpg";
 import Button from "react-bootstrap/Button";
+import React, { useCallback, useState } from "react";
+import { useDropzone } from "react-dropzone";
 
 function App() {
+  const onDrop = useCallback((acceptedFiles) => {
+    console.log("File Uploaded");
+    setIsFile(true);
+  }, []);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+  const [isFile, setIsFile] = useState(false);
+
   return (
     <div className="App">
       <header className="App-header">
         <div id="cardMain" className="flex flex-col gap-8 max-w-6xl">
           <div className="main-back">
-            <div className="hero items-center bg-black p-10 rounded-3xl backdrop-blur-xl bg-black bg-opacity-50">
+            <div className="hero items-center p-10 rounded-3xl backdrop-blur-xl bg-black bg-opacity-50">
               <div className="flex flex-col text-left gap-2">
-                <div className="text-7xl font-bold">SightSense</div>
+                <div className="text-7xl font-bold font-[OpenSans]">
+                  SightSense
+                </div>
                 <div className="text-2xl font-bold italic">Your Third Eye</div>
               </div>
               <div className="rounded-2xl img-cont justify-end flex">
@@ -85,8 +94,20 @@ function App() {
               <div className="flex flex-col text-desc text-center gap-2">
                 <div className="text-5xl font-bold">View A Demo!</div>
               </div>
-              <div className="rounded-2xl img-cont justify-start flex">
-                <Button>Start!</Button>
+              <div className="fileDrop rounded-2xl img-cont justify-start flex backdrop-blur-xl bg-black bg-opacity-50">
+                { !isFile ? <>
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
+                  {isDragActive ? (
+                    <div>Drop the files here ...</div>
+                  ) : (
+                    <div>
+                      Drag or drop some files here, or click to select files
+                    </div>
+                  )}
+                </div>
+                </> : <div>File Loaded</div>
+                }
               </div>
             </div>
           </div>
