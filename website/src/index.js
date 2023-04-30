@@ -7,12 +7,14 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import sightsense from './images/sightsense.png'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
      <Navbar sticky="top" bg="dark" variant="dark">
         <Container>
+        <img src={sightsense} className="sightsense h-14 pt-2" alt="logo" />
           <Navbar.Brand href="#cardMain">SightSense</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="#card1">Features</Nav.Link>

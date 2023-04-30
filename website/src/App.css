@@ -15,6 +15,14 @@
   overflow: scroll;
 }
 
+.me-auto{
+  display: flex;
+  align-items: center;
+
+  overflow: scroll;
+
+}
+
 .hero{
   display: grid;
   gap: 40px;
