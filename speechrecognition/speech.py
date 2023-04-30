@@ -16,15 +16,15 @@ engine = pyttsx3.init()
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[1].id)
 
-twilio_account_sid = 'AC4cfec86d87d0f34359e07784172a6147'
-twilio_auth_token = '46563c89b6315d38f74857fd9d8e6d72'
-twilio_phone_number = '+18557432591'
+twilio_account_sid = 'personal key'
+twilio_auth_token = 'personal key'
+twilio_phone_number = '+1816 xxxxxx91'
 twilio_client = Client(twilio_account_sid, twilio_auth_token)
 
-ELEVENLABS_API_KEY="1ba0b0a874fbf33d678f720868670557"
+ELEVENLABS_API_KEY="1ba0____personalkey______3720868670557"
 ELEVANLABS_URL='https://api.elevenlabs.io/v1/text-to-speech/21m00Tcm4TlvDq8ikWAM/stream'
 
-openai.api_key = "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"
+openai.api_key = "sk-7e1PJEx6yEzj03zf____personalkey______te5MBwLqWE"
 run = False
 
 def talk(text):
