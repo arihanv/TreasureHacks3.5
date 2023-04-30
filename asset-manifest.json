@@ -1,11 +1,12 @@
 {
   "files": {
-    "main.css": "/TreasureHacks3.5/static/css/main.494037cb.css",
-    "main.js": "/TreasureHacks3.5/static/js/main.f1f56936.js",
+    "main.css": "/TreasureHacks3.5/static/css/main.2212e736.css",
+    "main.js": "/TreasureHacks3.5/static/js/main.cdc590b5.js",
     "static/js/787.71e672d5.chunk.js": "/TreasureHacks3.5/static/js/787.71e672d5.chunk.js",
     "static/media/gradient.jpg": "/TreasureHacks3.5/static/media/gradient.ad2df5b2e96d153c705c.jpg",
     "static/media/placeholder.png": "/TreasureHacks3.5/static/media/placeholder.faf90b4ef36a86f67ff0.png",
     "static/media/glasses.png": "/TreasureHacks3.5/static/media/glasses.87789083e81069dc1130.png",
+    "static/media/bottle.png": "/TreasureHacks3.5/static/media/bottle.b10dd7dd6f2c0127cf22.png",
     "static/media/imageCap.png": "/TreasureHacks3.5/static/media/imageCap.eb79d175b16cd955c5f6.png",
     "static/media/objDect.png": "/TreasureHacks3.5/static/media/objDect.45e51c253e3139578808.png",
     "static/media/speechRec.png": "/TreasureHacks3.5/static/media/speechRec.b757847eddb58440d548.png",
@@ -14,12 +15,12 @@
     "static/media/sightsense.png": "/TreasureHacks3.5/static/media/sightsense.cfa3bd4caca6e097e360.png",
     "static/media/blind.jpg": "/TreasureHacks3.5/static/media/blind.1aa33d37594a5297a019.jpg",
     "index.html": "/TreasureHacks3.5/index.html",
-    "main.494037cb.css.map": "/TreasureHacks3.5/static/css/main.494037cb.css.map",
-    "main.f1f56936.js.map": "/TreasureHacks3.5/static/js/main.f1f56936.js.map",
+    "main.2212e736.css.map": "/TreasureHacks3.5/static/css/main.2212e736.css.map",
+    "main.cdc590b5.js.map": "/TreasureHacks3.5/static/js/main.cdc590b5.js.map",
     "787.71e672d5.chunk.js.map": "/TreasureHacks3.5/static/js/787.71e672d5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.494037cb.css",
-    "static/js/main.f1f56936.js"
+    "static/css/main.2212e736.css",
+    "static/js/main.cdc590b5.js"
   ]
 }
