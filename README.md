@@ -2,6 +2,8 @@
 
 View the website here: [Sightsense](https://arihanv.github.io/TreasureHacks3.5/)
 
+The website will soon be hosted on sightsense.tech after DNS records complete changing.
+
 ![alt text](https://cdn.discordapp.com/attachments/1099138954462232667/1102092229473992794/167314742-3203e453-d981-4676-8a1d-24eef61047ab.jpeg)
 ![alt text](https://cdn.discordapp.com/attachments/1099138954462232667/1102092229792768064/167314790-cc23bd84-97c0-4524-adb3-990fe1965f35.png)
 
