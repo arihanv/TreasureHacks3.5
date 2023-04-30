@@ -10,6 +10,7 @@ import speechRec from "./images/speechRec.png";
 import imgCap from "./images/imageCap.png";
 import blind from "./images/blind.jpg";
 import placeholder from "./images/placeholder.png";
+import bottle from "./images/bottle.png"
 
 function App() {
   const onDrop = useCallback((acceptedFiles) => {
@@ -72,7 +73,7 @@ function App() {
                   </Card.Body>
                 </Card>
                 <Card style={{ width: "18rem" }}>
-                  <Card.Img variant="top" src={objDect} />
+                  <Card.Img variant="top" src={bottle} />
                   <Card.Body>
                     <div className="text-black text-xl font-bold">
                       Object Detection

@@ -12,14 +12,14 @@
   /* justify-content: center; */
   font-size: calc(10px + 2vmin);
   color: white;
-  overflow: scroll;
+  overflow-x: hidden ;
 }
 
 .me-auto{
   display: flex;
   align-items: center;
 
-  overflow: scroll;
+  overflow: hidden;
 
 }
 
