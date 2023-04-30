@@ -9,6 +9,7 @@ import objDect from "./images/objDect.png";
 import speechRec from "./images/speechRec.png";
 import imgCap from "./images/imageCap.png";
 import blind from "./images/blind.jpg";
+import placeholder from "./images/placeholder.png";
 
 function App() {
   const onDrop = useCallback((acceptedFiles) => {
@@ -142,7 +143,8 @@ function App() {
               <div className="flex flex-col text-desc text-center gap-2">
                 <div className="text-5xl font-bold">View A Demo!</div>
               </div>
-              <div className="fileDrop rounded-2xl img-cont justify-start flex backdrop-blur-xl bg-black bg-opacity-50">
+              <img src={placeholder} className="rounded-3xl max-h-[300px]" alt="logo" />
+              {/* <div className="fileDrop rounded-2xl img-cont justify-start flex backdrop-blur-xl bg-black bg-opacity-50">
                 {!isFile ? (
                   <>
                     <div {...getRootProps()}>
@@ -159,7 +161,7 @@ function App() {
                 ) : (
                   <div>File Loaded</div>
                 )}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
