@@ -47,6 +47,9 @@ def extract_command(phrase):
         phrase = phrase.split("site", 1)[1].strip()
     elif "sight sense" in phrase:
         phrase = phrase.split("sight sense", 1)[1].strip()
+    elif "side" in phrase:
+        phrase = phrase.split("side", 1)[1].strip()
+
 
 
     else:
@@ -55,6 +58,8 @@ def extract_command(phrase):
     # Return the extracted command
     return phrase
 
+keywords = ['sight', 'sense', 'site', 'sight sense', 'side']
+    # Do something
 
 
 def take_command():
@@ -68,7 +73,7 @@ def take_command():
             command = command.lower()
             print(command) # Add this line to see what the command is
             print('sight' in command or 'sense' in command or 'site' in command or 'sight sense' in command) ##DETECTS IF THE COMMAND CONTAINS A TRIGGER WORD
-        if 'sight' in command or 'sense' in command or 'site' in command or 'sight sense' in command:
+        if any(keyword in command for keyword in keywords):
             run = True
             # Extract the command using the function we just made
             extracted_command = extract_command(command)
