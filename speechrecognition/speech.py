@@ -143,6 +143,7 @@ def format_phone_number(phone_number):
     else:
         return None
 
+    
 
 def run_tejas():
     command = take_command()
@@ -227,7 +228,7 @@ def run_tejas():
         print(f"Call initiated with SID: {call.sid}")
            
     else:
-        try:
+        try:#AUTO GENERATED AI
             response = openai.Completion.create(
               prompt=f"{command}\n",
               model="text-davinci-003",
@@ -250,7 +251,8 @@ def run_tejas():
 while True:
     run_tejas()
 
-
+    
+#PS: The "Describe Whats Heppning Around Me" code is written in the other python file.
 
 ### OLD PLAY SONG ###
 
