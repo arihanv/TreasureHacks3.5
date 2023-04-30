@@ -16,6 +16,8 @@ engine = pyttsx3.init()
 voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[1].id)
 
+
+#keys censored out
 twilio_account_sid = 'personal key'
 twilio_auth_token = 'personal key'
 twilio_phone_number = '+1816 xxxxxx91'
@@ -36,15 +38,17 @@ def extract_command(phrase):
     # Convert phrase to lowercase
     phrase = phrase.lower()
     
-    # Check if "sight" or "sense" is in the phrase
+    #extraction process
     if "sight" in phrase:
-        # Remove everything before "sight"
         phrase = phrase.split("sight", 1)[1].strip()
     elif "sense" in phrase:
-        # Remove everything before "sense"
         phrase = phrase.split("sense", 1)[1].strip()
     elif "site" in phrase:
         phrase = phrase.split("site", 1)[1].strip()
+    elif "glass" in phrase:
+        phrase = phrase.split("glass", 1)[1].strip()
+    elif "glasses" in phrase:
+        phrase = phrase.split("glasses", 1)[1].strip()
     elif "sight sense" in phrase:
         phrase = phrase.split("sight sense", 1)[1].strip()
     elif "side" in phrase:
@@ -58,7 +62,7 @@ def extract_command(phrase):
     # Return the extracted command
     return phrase
 
-keywords = ['sight', 'sense', 'site', 'sight sense', 'side']
+keywords = ['glass', 'glasses', 'sight', 'sense', 'site', 'sight sense', 'side']
     # Do something
 
 
